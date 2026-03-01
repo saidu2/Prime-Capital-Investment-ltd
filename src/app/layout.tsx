@@ -32,6 +32,19 @@ export const metadata: Metadata = {
       },
     ],
   },
+  openGraph: {
+    title: "Prime Capital – Trusted Financial Services firm in Nigeria",
+    description:
+      "Prime Capital offers brokerage, investment advisory, and asset management services. Regulated by the Nigerian SEC.",
+    url: "https://primecapital.ng",
+    type: "website",
+    images: ["/web-app-manifest-512x512.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/web-app-manifest-512x512.png"],
+  },
+  alternates: { canonical: "https://primecapital.ng" },
 };
 
 export default function RootLayout({
