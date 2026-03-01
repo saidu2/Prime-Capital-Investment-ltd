@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
+
+export const metadata: Metadata = {
+  title: "Website Use Policy",
+  description:
+    "Read the Website Use Policy for Prime Capital & Investment Limited, governing your use of primecapital.ng.",
+  alternates: { canonical: "https://primecapital.ng/terms" },
+  robots: { index: false, follow: false },
+};
 
 export default function TermsPage() {
   return (

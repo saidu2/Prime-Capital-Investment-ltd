@@ -1,0 +1,14 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /auth
+
+# Host
+Host: https://primecapital.ng
+
+# Sitemaps
+Sitemap: https://primecapital.ng/sitemap.xml

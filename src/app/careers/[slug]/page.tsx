@@ -6,6 +6,7 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JobTypeBadge } from "@/components/careers/job-type-badge";
@@ -20,6 +21,30 @@ interface CareerPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: CareerPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const career = await getCareerBySlug(slug);
+
+  if (!career) {
+    return { title: "Position Not Found" };
+  }
+
+  const description = `${career.jobType} position at Prime Capital in ${career.location}. ${career.description?.slice(0, 140) ?? ""}`;
+
+  return {
+    title: career.title,
+    description,
+    alternates: { canonical: `https://primecapital.ng/careers/${slug}` },
+    openGraph: {
+      title: `${career.title} – Prime Capital`,
+      description,
+      url: `https://primecapital.ng/careers/${slug}`,
+    },
+  };
 }
 
 export default async function CareerPage({ params }: CareerPageProps) {

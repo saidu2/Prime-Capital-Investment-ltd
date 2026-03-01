@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,6 +13,42 @@ interface ArticlePageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ArticlePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) {
+    return { title: "Article Not Found" };
+  }
+
+  return {
+    title: article.title,
+    description: article.excerpt ?? undefined,
+    alternates: { canonical: `https://primecapital.ng/news/${slug}` },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt ?? undefined,
+      url: `https://primecapital.ng/news/${slug}`,
+      type: "article",
+      publishedTime: article.publishedAt
+        ? new Date(article.publishedAt).toISOString()
+        : undefined,
+      authors: article.author?.name ? [article.author.name] : undefined,
+      images: article.coverImageUrl
+        ? [{ url: article.coverImageUrl, alt: article.title }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt ?? undefined,
+      images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
+    },
+  };
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {

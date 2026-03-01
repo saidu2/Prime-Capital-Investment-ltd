@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import { Calendar, Clock, Search } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "News & Insights",
+  description:
+    "Stay informed with the latest financial news, market insights, and investment commentary from Prime Capital & Investment Limited.",
+  alternates: { canonical: "https://primecapital.ng/news" },
+  openGraph: {
+    title: "News & Insights – Prime Capital Nigeria",
+    description:
+      "Financial news, market updates, and investment insights from Prime Capital & Investment Limited.",
+    url: "https://primecapital.ng/news",
+  },
+};
 import Link from "next/link";
 import { Suspense } from "react";
 import { ArticleCard } from "@/components/articles/article-card";

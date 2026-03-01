@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import { Briefcase } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Join the Prime Capital team. Explore open positions at a leading SEC-regulated fund and portfolio management firm in Nigeria.",
+  alternates: { canonical: "https://primecapital.ng/careers" },
+  openGraph: {
+    title: "Careers at Prime Capital – Join Our Team in Nigeria",
+    description:
+      "Explore career opportunities at Prime Capital & Investment Limited, a SEC-regulated investment firm based in Abuja, Nigeria.",
+    url: "https://primecapital.ng/careers",
+  },
+};
 import { Suspense } from "react";
 import { CareerCard } from "@/components/careers/career-card";
 import { CareerSearch } from "@/components/careers/career-search";
