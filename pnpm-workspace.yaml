@@ -1,5 +1,31 @@
 packages:
   - .
+
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+
+overrides:
+  defu@<=6.1.4: '>=6.1.5'
+  drizzle-orm@<0.45.2: '>=0.45.2'
+  esbuild@<=0.24.2: '>=0.25.0'
+  fast-xml-parser@>=5.0.0 <5.3.5: '>=5.3.5'
+  fast-xml-parser@>=5.0.0 <5.3.6: '>=5.3.6'
+  fast-xml-parser@>=5.0.0 <5.3.8: '>=5.3.8'
+  fast-xml-parser@>=5.0.0 <5.5.6: '>=5.5.6'
+  fast-xml-parser@>=5.0.0 <5.5.7: '>=5.5.7'
+  fast-xml-parser@>=5.0.9 <=5.3.3: '>=5.3.4'
+  kysely@<=0.28.13: '>=0.28.14'
+  kysely@>=0.26.0 <=0.28.11: '>=0.28.12'
+  markdown-it@>=13.0.0 <14.1.1: '>=14.1.1'
+  next@>=15.6.0-canary.0 <16.1.5: '>=16.1.5'
+  next@>=16.0.0-beta.0 <16.1.5: '>=16.1.5'
+  next@>=16.0.0-beta.0 <16.1.7: '>=16.1.7'
+  next@>=16.0.0-beta.0 <16.2.3: '>=16.2.3'
+  next@>=16.0.1 <16.1.7: '>=16.1.7'
+  next@>=16.1.0-canary.0 <16.1.5: '>=16.1.5'
+  nodemailer@<8.0.4: '>=8.0.4'
+  nodemailer@<=8.0.4: '>=8.0.5'
+  picomatch@<2.3.2: '>=2.3.2'
+  undici@<6.23.0: '>=6.23.0'
+  undici@<6.24.0: '>=6.24.0'
