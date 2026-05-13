@@ -35,43 +35,55 @@ export default function ServicesPage() {
   };
   const services = [
     {
-      title: "Money Market Instruments",
-      description: "Investments in securities with short-term maturities",
+      title: "Prime Discretionary Portfolio (Conventional)",
+      description: "Under this mandate, Prime Capital is granted full discretionary authority to manage investments within agreed guidelines and parameters, without requiring prior approval for each transaction. This enables timely and efficient decision-making, active portfolio optimisation, and the ability to capitalise on emerging market opportunities. The investment include but not limited to the following conventional instruments",
       features: [
+        "FGN Bonds",
+        "States Bonds",
+        "Corporate bonds",
         "Treasury Bills (T-Bills)",
         "Commercial Papers (CPs)",
         "Certificates of Deposit (CDs)",
         "Bankers' Acceptances (BAs)",
+        "EURO Bonds",
       ],
     },
     {
-      title: "Fixed Income Securities",
+      title: "Prime Discretionary Portfolio (Shari’ah-Compliant Sub-Portfolio)",
       description:
-        "Stable income-oriented portfolios investing in government bonds and high-quality corporate debt",
-      features: ["FGN Bonds", "State Bonds", "Corporate Bonds"],
-    },
-    {
-      title: "Ethical & Shari'ah Compliant Products",
-      description:
-        "Investment products aligned with ethical investment principles.",
+        "Under this mandate, Prime Capital is granted full discretionary authority to manage investments within agreed guidelines and parameters, without requiring prior approval for each transaction. This enables timely and efficient decision-making, active portfolio optimisation, and the ability to capitalise on emerging market opportunities. The investment include but not limited to the following Shari’ah-Compliant instruments",
       features: [
-        "Murabahah Investment",
-        "Ijara Investment",
-        "Sukuk (Islamic bond)",
-        "Mudarabah Investment",
+        "Sovereign Sukuk (FGN Sukuk) ", 
+        "State Government Sukuk", 
+        "Corporate Sukuk (Listed and Unlisted)", 
+        "Shari’ah-compliant Equities (Quoted and Unquoted Equities traded on SEC registered OTC)",
+        "Shari’ah-compliant Money Market Instruments & Mudarabah/Wakalah Placements"],
+    },
+    {
+      title: "Prime Non-Discretionary Portfolio (Conventional)",
+      description: "This mandate is designed for clients who prefer to retain direct involvement in investment decisions. Prime Capital provides investment recommendations aligned with the client’s objectives and risk appetite; however, execution is subject to the client’s prior written approval. This structure combines professional advisory services with full client control. The investment include but not limited to the following conventional instruments",
+      features: [
+        "FGN Bonds",
+        "States Bonds",
+        "Corporate bonds",
+        "Treasury Bills (T-Bills)",
+        "Commercial Papers (CPs)",
+        "Certificates of Deposit (CDs)",
+        "Bankers' Acceptances (BAs)",
+        "EURO Bonds",
       ],
     },
     {
-      title: "Alternative Investments",
+      title: "Prime Non-Discretionary Portfolio (Shari’ah-Compliant Sub-Portfolio)",
       description:
-        "Access to non-traditional assets for qualified investors seeking enhanced returns.",
+        "This mandate is designed for clients who prefer to retain direct involvement in investment decisions. Prime Capital provides investment recommendations aligned with the client’s objectives and risk appetite; however, execution is subject to the client’s prior written approval. This structure combines professional advisory services with full client control. The investment include but not limited to the following conventional instruments",
       features: [
-        "Real estate investments",
-        "Private equity investments",
-        "Venture capital access",
-        "Infrastructure projects",
-      ],
-    },
+        "Sovereign Sukuk (FGN Sukuk) ", 
+        "State Government Sukuk", 
+        "Corporate Sukuk (Listed and Unlisted)", 
+        "Shari’ah-compliant Equities (Quoted and Unquoted Equities traded on SEC registered OTC)",
+        "Shari’ah-compliant Money Market Instruments & Mudarabah/Wakalah Placements"],
+          },
     {
       title: "Financial Advisory",
       description:

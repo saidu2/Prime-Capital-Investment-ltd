@@ -21,12 +21,12 @@ export function Footer() {
       { label: "News", href: "/news" },
     ],
     services: [
-      { label: "Money Market", href: "/services" },
-      { label: "Fixed Income", href: "/services" },
-      { label: "Multi-Asset", href: "/services" },
-      { label: "Ethical Products", href: "/services" },
+      { label: "Prime Discretionary Portfolio (Conventional)", href: "/services" },
+      { label: "Non-Discretionary Portfolio (Conventional)", href: "/services" },
+      { label: "Prime Discretionary Portfolio (Shari’ah-Compliant Sub-Portfolio)", href: "/services" },
+      { label: "Prime Non-Discretionary Portfolio (Shari’ah-Compliant Sub-Portfolio)", href: "/services" },
       { label: "Financial Advisory", href: "/services" },
-      { label: "Equity Investment", href: "/services" },
+      
     ],
     legal: [{ label: "Terms of Use", href: "/terms" }],
   };
