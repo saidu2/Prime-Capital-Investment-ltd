@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 95],
   },
+  serverExternalPackages: ["postgres"],
 };
 
 export default nextConfig;
