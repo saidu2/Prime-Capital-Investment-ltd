@@ -37,7 +37,7 @@ export default function ServicesPage() {
     {
       title: "Prime Discretionary Portfolio (Conventional)",
       description: <p className="text-justify leading-7">
-          Under this mandate, Prime Capital is granted full discretionary authority to manage investments within agreed guidelines and parameters, without requiring prior approval for each transaction. This enables timely and efficient decision-making, active portfolio optimisation, and the ability to capitalise on emerging market opportunities. The investment include but not limited to the following conventional instruments
+          Under this mandate, Prime Capital is granted full discretionary authority to manage investments within agreed guidelines and parameters, without requiring prior approval for each transaction. This enables timely and efficient decision-making, active portfolio optimisation, and the ability to capitalise on emerging market opportunities. The investment include but not limited to the following conventional instruments.
       </p>,
       features: [
         "FGN Bonds",
@@ -53,7 +53,7 @@ export default function ServicesPage() {
     {
       title: "Prime Discretionary Portfolio (Shari’ah-Compliant Sub-Portfolio)",
       description: <p className="text-justify leading-7">
-          Under this mandate, Prime Capital is granted full discretionary authority to manage investments within agreed guidelines and parameters, without requiring prior approval for each transaction. This enables timely and efficient decision-making, active portfolio optimisation, and the ability to capitalise on emerging market opportunities. The investment include but not limited to the following Shari’ah-Compliant instruments
+          Under this mandate, Prime Capital is granted full discretionary authority to manage investments within agreed guidelines and parameters, without requiring prior approval for each transaction. This enables timely and efficient decision-making, active portfolio optimisation, and the ability to capitalise on emerging market opportunities. The investment include but not limited to the following Shari’ah-Compliant instruments.
       </p>,
       features: [
         "Sovereign Sukuk (FGN Sukuk) ", 
@@ -65,7 +65,7 @@ export default function ServicesPage() {
     {
       title: "Prime Non-Discretionary Portfolio (Conventional)",
       description: <p className="text-justify leading-7">
-       This mandate is designed for clients who prefer to retain direct involvement in investment decisions. Prime Capital provides investment recommendations aligned with the client’s objectives and risk appetite; however, execution is subject to the client’s prior written approval. This structure combines professional advisory services with full client control. The investment include but not limited to the following conventional instruments
+       This mandate is designed for clients who prefer to retain direct involvement in investment decisions. Prime Capital provides investment recommendations aligned with the client’s objectives and risk appetite; however, execution is subject to the client’s prior written approval. This structure combines professional advisory services with full client control. The investment include but not limited to the following conventional instruments.
       </p>,
       features: [
         "FGN Bonds",
@@ -81,7 +81,7 @@ export default function ServicesPage() {
     {
       title: "Prime Non-Discretionary Portfolio (Shari’ah-Compliant Sub-Portfolio)",
       description: <p className="text-justify leading-7">
-        "This mandate is designed for clients who prefer to retain direct involvement in investment decisions. Prime Capital provides investment recommendations aligned with the client’s objectives and risk appetite; however, execution is subject to the client’s prior written approval. This structure combines professional advisory services with full client control. The investment include but not limited to the following conventional instruments",
+        This mandate is designed for clients who prefer to retain direct involvement in investment decisions. Prime Capital provides investment recommendations aligned with the client’s objectives and risk appetite; however, execution is subject to the client’s prior written approval. This structure combines professional advisory services with full client control. The investment include but not limited to the following conventional instruments.
       </p>,
       features: [
         "Sovereign Sukuk (FGN Sukuk) ", 
