@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next";
 import type React from "react";
 import "./globals.css";
@@ -142,6 +143,7 @@ export default function RootLayout({
         <NextTopLoader showSpinner={false} />
         <SmoothScroll>{children}</SmoothScroll>
         <Toaster richColors position="top-right" />
+         <Analytics />
       </body>
     </html>
   );
