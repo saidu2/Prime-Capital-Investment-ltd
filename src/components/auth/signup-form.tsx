@@ -22,6 +22,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { isAdminEmail } from "@/lib/admin";
 import { authClient } from "@/lib/auth-client";
 import { LoadingSwap } from "../ui/loading-swap";
 import { WdsPasswordInput } from "../ui/password-input";
@@ -37,7 +38,7 @@ const signUpSchema = z
       .email({ error: "Email is required" })
       .min(1, "Email is required")
       .refine(
-        (email) => ["safiyanusaidu2@gmail.com"].includes(email),
+        (email) => isAdminEmail(email),
         "This email is not allowed to sign up.",
       ),
     name: z.string({ error: "Name is required" }).min(1, "Name is required"),

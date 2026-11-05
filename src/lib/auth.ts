@@ -4,6 +4,7 @@ import { nextCookies } from "better-auth/next-js";
 import { twoFactor } from "better-auth/plugins";
 import { db } from "@/db";
 import * as schema from "@/db/schema/auth";
+import { isAdminEmail } from "./admin";
 import {
   sendEmailVerificationEmail,
   sendOtpEmail,
@@ -77,10 +78,7 @@ export const auth = betterAuth({
     user: {
       create: {
         before: async (user) => {
-          const adminEmail =
-            process.env.ADMIN_EMAIL || "safiyanusaidu2@gmail.com";
-          const allowedEmails = [adminEmail];
-          if (!allowedEmails.includes(user.email)) {
+          if (!isAdminEmail(user.email)) {
             return false;
           }
         },

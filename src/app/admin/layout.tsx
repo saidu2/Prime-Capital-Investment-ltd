@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { isAdminEmail } from "@/lib/admin";
 import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default async function AdminLayout({
     redirect("/auth/login");
   }
 
-  if (session.user.email !== "safiyanusaidu2@gmail.com") {
+  if (!isAdminEmail(session.user.email)) {
     redirect("/");
   }
 

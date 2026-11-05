@@ -24,6 +24,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { isAdminEmail } from "@/lib/admin";
 import { authClient } from "@/lib/auth-client";
 import { LoadingSwap } from "../ui/loading-swap";
 import { WdsPasswordInput } from "../ui/password-input";
@@ -37,7 +38,7 @@ const signInSchema = z.object({
     .email({ error: "Email is required" })
     .min(1, "Email is required")
     .refine(
-      (email) => ["safiyanusaidu2@gmail.com"].includes(email),
+      (email) => isAdminEmail(email),
       "This email is not allowed to sign in.",
     ),
   password: z.string().min(1, "Password is required."),
@@ -66,6 +67,7 @@ export function LoginForm() {
         email: data.email,
         password: data.password,
         callbackURL: callbackUrl,
+        rememberMe: false,
       },
       {
         onError: (err) => {

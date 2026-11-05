@@ -53,7 +53,7 @@ export default function OtpPage() {
     await authClient.twoFactor.verifyOtp(
       {
         code: data.pin,
-        trustDevice: true,
+        trustDevice: false,
       },
       {
         onError: (err) => {
@@ -63,10 +63,11 @@ export default function OtpPage() {
         onSuccess: () => {
           form.reset();
           toast.success("OTP Login Successfull!", {
-            description: "Redirecting to login...",
+            description: "Redirecting...",
           });
           setTimeout(() => {
-            router.push("/");
+            window.location.href =
+              process.env.NEXT_PUBLIC_BETTER_AUTH_CALLBACK_URL || "/admin";
           }, 1000);
         },
       },
