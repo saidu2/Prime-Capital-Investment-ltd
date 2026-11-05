@@ -30,7 +30,7 @@ export function Footer() {
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/primecapitalng/", label: "LinkedIn" },
     { icon: Instagram, href: "https://www.instagram.com/primecapital.ng", label: "Instagram" },
   ];
 
