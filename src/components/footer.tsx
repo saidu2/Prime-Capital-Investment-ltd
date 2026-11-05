@@ -1,13 +1,11 @@
 "use client";
 
 import {
-  Facebook,
   Instagram,
   Linkedin,
   Mail,
   MapPin,
   Phone,
-  Twitter,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,9 +31,7 @@ export function Footer() {
 
   const socialLinks = [
     { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/primecapital.ng", label: "Instagram" },
   ];
 
   return (
@@ -161,6 +157,8 @@ export function Footer() {
                   <a
                     key={social.label}
                     href={social.href}
+                    target={social.href !== "#" ? "_blank" : undefined}
+                    rel={social.href !== "#" ? "noopener noreferrer" : undefined}
                     aria-label={social.label}
                     className="group relative h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:border-[#D4AF37] transition-all duration-300"
                   >
