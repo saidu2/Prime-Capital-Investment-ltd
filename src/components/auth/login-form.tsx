@@ -89,6 +89,8 @@ export function LoginForm() {
             } else {
               toast.error("Failed to Sign In. Try Again!");
             }
+          } else {
+            window.location.href = callbackUrl;
           }
         },
       },
