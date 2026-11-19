@@ -234,7 +234,7 @@ export default function AboutPage() {
       bio: "Contributes strategic oversight, governance insight, and risk management expertise. Founder of a real estate construction company and aviation professional with over 15 years of experience.",
       photo: "/haliru.jpeg",
       fullInfo:
-        "Haliru Bashir Tahir serves as a Non-Executive Director on the Board of Prime Capital & Investment Limited, where he contributes strategic oversight, governance insight, and risk management expertise. He holds a degree in Aerospace and Occupational Safety from Embry-Riddle Aeronautical University, Florida. He is the Founder of a real estate construction company focused on the development of modern and sustainable residential properties in Abuja, reflecting a strong commitment to long-term value creation and responsible development. With over 15 years of experience in the aviation sector, Mr. Tahir has held senior roles as a corporate pilot, aviation safety professional, and aircraft management specialist. His background brings a strong perspective on operational leadership, safety standards, and risk management, which supports effective board-level decision-making at Prime Capital & Investment Limited.",
+        "Haliru Bashir Tahir serves as a Non-Executive Director on the Board of Prime Capital & Investment Limited, where he contributes strategic oversight, governance insight, and risk management expertise. He holds a degree in Aerospace and Occupational Safety from Embry-Riddle Aeronautical University, Florida.\n\nHe is the Founder of a real estate construction company focused on the development of modern and sustainable residential properties in Abuja, reflecting a strong commitment to long-term value creation and responsible development.\n\nWith over 15 years of experience in the aviation sector, Mr. Tahir has held senior roles as a corporate pilot, aviation safety professional, and aircraft management specialist. His background brings a strong perspective on operational leadership, safety standards, and risk management, which supports effective board-level decision-making at Prime Capital & Investment Limited.",
     },
     {
       name: "Maryam Ibrahim Buwai",
@@ -242,7 +242,7 @@ export default function AboutPage() {
       bio: "Seasoned governance and management professional with over 18 years of leadership experience in institutional administration and executive oversight.",
       photo: "/maryam.jpeg",
       fullInfo:
-        "Maryam Ibrahim Buwai is a seasoned governance and management professional with over 18 years of leadership experience in institutional administration and executive oversight. She holds a BSc in Management Sciences from Usmanu Danfodio University, Sokoto. She has built a distinguished career within Nigeria’s hospitality and tourism sector, with particular expertise in the commercialization of public tourism and hospitality assets, contributing to sustainable operational and financial outcomes. As a Non-Executive Director at Prime Capital & Investment Limited, Ms. Buwai provides independent oversight and strategic input, supporting strong governance, effective risk management, and operational efficiency. Her objective judgment strengthens board decision-making, regulatory compliance, and long-term investor confidence.",
+        "Maryam Ibrahim Buwai is a seasoned governance and management professional with over 18 years of leadership experience in institutional administration and executive oversight. She holds a BSc in Management Sciences from Usmanu Danfodio University, Sokoto.\n\nShe has built a distinguished career within Nigeria’s hospitality and tourism sector, with particular expertise in the commercialization of public tourism and hospitality assets, contributing to sustainable operational and financial outcomes.\n\nAs a Non-Executive Director at Prime Capital & Investment Limited, Ms. Buwai provides independent oversight and strategic input, supporting strong governance, effective risk management, and operational efficiency. Her objective judgment strengthens board decision-making, regulatory compliance, and long-term investor confidence.",
     },
   ];
 
@@ -254,7 +254,7 @@ export default function AboutPage() {
       icon: Briefcase,
       photo: "/kunle.jpg",
       fullInfo:
-        "Kunle J. Adeboye is Managing Director and Chief Executive Officer of Prime Capital & Investment Ltd. He has more than 25 years of executive experience across asset management, pensions, financial services and consumer markets, with a career spanning institutional leadership, investment oversight, business transformation and growth. A pioneer professional in Nigeria's Contributory Pension Scheme, Kunle contributed to the growth and development of two Pension Fund Administrators and subsequently provided executive leadership at another PFA. Over the course of his career, he has contributed to the management and strategic oversight of pension and investment assets in excess of ₦200 billion. Kunle is a graduate of the University of Ibadan and holds an MBA in Strategic Business Management. He is a Certified Management Consultant and a Fellow of both the Institute of Management Consultants and the Chartered Institute of Loan & Risk Management of Nigeria. In 2018, he was selected among 70 distinguished alumni featured in the University of Ibadan's 70th Anniversary celebrations, in recognition of professional excellence and national impact. In his spare time, Kunle writes on leadership, governance and national development, contributing to the wider conversation on Nigeria's institutional and economic progress. At Prime Capital, Kunle is focused on building an enduring investment institution anchored on disciplined growth, sound governance and long-term value creation for clients and stakeholders.",
+        "Kunle J. Adeboye is Managing Director and Chief Executive Officer of Prime Capital & Investment Ltd. He has more than 25 years of executive experience across asset management, pensions, financial services and consumer markets, with a career spanning institutional leadership, investment oversight, business transformation and growth.\n\nA pioneer professional in Nigeria's Contributory Pension Scheme, Kunle contributed to the growth and development of two Pension Fund Administrators and subsequently provided executive leadership at another PFA. Over the course of his career, he has contributed to the management and strategic oversight of pension and investment assets in excess of ₦200 billion.\n\nKunle is a graduate of the University of Ibadan and holds an MBA in Strategic Business Management. He is a Certified Management Consultant and a Fellow of both the Institute of Management Consultants and the Chartered Institute of Loan & Risk Management of Nigeria.\n\nIn 2018, he was selected among 70 distinguished alumni featured in the University of Ibadan's 70th Anniversary celebrations, in recognition of professional excellence and national impact. In his spare time, Kunle writes on leadership, governance and national development, contributing to the wider conversation on Nigeria's institutional and economic progress.\n\nAt Prime Capital, Kunle is focused on building an enduring investment institution anchored on disciplined growth, sound governance and long-term value creation for clients and stakeholders.",
     },
     {
       name: "Buhari Suleiman Alfa",
@@ -263,7 +263,7 @@ export default function AboutPage() {
       icon: Scale,
       photo: "/buhar.jpeg",
       fullInfo:
-        "Buhari Suleiman Alfa is a legal and compliance professional with expertise in corporate governance, regulatory compliance, and company secretarial practice. He holds an LLB and master's in Business and Commercial Law from Bayero University, Kano. He has previously served as Managing Associate at DalaHill Law Practice and Senior Legal Officer at Abuja Investments Company Limited, with experience spanning legal advisory, compliance oversight, and corporate secretarial functions. He is a member of the Nigerian Bar Association and the Chartered Institute of Loan and Risk Management. At Prime Capital & Investment Limited, he provides strategic legal guidance while ensuring full compliance with applicable laws, regulations, and corporate governance standards.",
+        "Buhari Suleiman Alfa is a legal and compliance professional with expertise in corporate governance, regulatory compliance, and company secretarial practice. He holds an LLB and master's in Business and Commercial Law from Bayero University, Kano.\n\nHe has previously served as Managing Associate at DalaHill Law Practice and Senior Legal Officer at Abuja Investments Company Limited, with experience spanning legal advisory, compliance oversight, and corporate secretarial functions. He is a member of the Nigerian Bar Association and the Chartered Institute of Loan and Risk Management.\n\nAt Prime Capital & Investment Limited, he provides strategic legal guidance while ensuring full compliance with applicable laws, regulations, and corporate governance standards.",
     },
     {
       name: "Oluwatosin Idowu",
@@ -272,7 +272,7 @@ export default function AboutPage() {
       icon: Scale,
       photo: "/tosin.jpeg",
       fullInfo:
-        "She is a qualified legal practitioner. She holds an LL.B from the University of Lagos. She is also a SEC-Sponsored Individual. She has several years of professional experience across private legal practice, corporate advisory, and public sector service, with a strong focus on legal compliance, due diligence, and corporate governance. Her experience includes company secretarial services, drafting and review of contracts and legal opinions, regulatory and statutory documentation, handling of confidential records, and client advisory and representation. At Prime Capital, she is supports funds operations and regulatory compliance.",
+        "She is a qualified legal practitioner. She holds an LL.B from the University of Lagos. She is also a SEC-Sponsored Individual.\n\nShe has several years of professional experience across private legal practice, corporate advisory, and public sector service, with a strong focus on legal compliance, due diligence, and corporate governance. Her experience includes company secretarial services, drafting and review of contracts and legal opinions, regulatory and statutory documentation, handling of confidential records, and client advisory and representation.\n\nAt Prime Capital, she is supports funds operations and regulatory compliance.",
     },
     {
       name: "Saidu Safiyanu",
@@ -281,7 +281,7 @@ export default function AboutPage() {
       icon: Zap,
       photo: "/saidu.jpg",
       fullInfo:
-        "Saidu Safiyanu is an information technology professional with expertise in network design, systems implementation, and IT infrastructure support. He holds a B.Eng. in Electrical Engineering and a Diploma in Computer Engineering from Ahmadu Bello University, Zaria. And also, professional training and certifications which includes CCNA, CCNP, HCIA, annd HCIP. He previously served as a Senior Systems Programmer (Network Engineer) at Ahmadu Bello University, Zaria, and as a Junior Network Engineer in network infrastructure and security roles. His experience spans the design, implementation, and maintenance of large-scale network systems in structured environments, supporting secure and reliable operations at Prime Capital & Investment Limited.",
+        "Saidu Safiyanu is an information technology professional with expertise in network design, systems implementation, and IT infrastructure support. He holds a B.Eng. in Electrical Engineering and a Diploma in Computer Engineering from Ahmadu Bello University, Zaria. And also, professional training and certifications which includes CCNA, CCNP, HCIA, annd HCIP.\n\nHe previously served as a Senior Systems Programmer (Network Engineer) at Ahmadu Bello University, Zaria, and as a Junior Network Engineer in network infrastructure and security roles.\n\nHis experience spans the design, implementation, and maintenance of large-scale network systems in structured environments, supporting secure and reliable operations at Prime Capital & Investment Limited.",
     },
     {
       name: "Saadah Sambo",
@@ -290,7 +290,7 @@ export default function AboutPage() {
       icon: Target,
       photo: "/saadah.jpeg",
       fullInfo:
-        "Saadah Sambo is an investment professional with strong expertise in investment research, portfolio management, and business strategy. She holds a First-Class Honours degree in Business Entrepreneurship from Effat University, Jeddah, Saudi Arabia, and a Master’s degree in Business Management from the University of Essex, United Kingdom. She gained early professional exposure through her NYSC internship at CardinalStone Asset Management Limited, where she developed practical experience in investment analysis and asset management operations. At Prime Capital & Investment Limited, she supports investment decision-making through research, portfolio support, and business management functions.",
+        "Saadah Sambo is an investment professional with strong expertise in investment research, portfolio management, and business strategy. She holds a First-Class Honours degree in Business Entrepreneurship from Effat University, Jeddah, Saudi Arabia, and a Master’s degree in Business Management from the University of Essex, United Kingdom.\n\nShe gained early professional exposure through her NYSC internship at CardinalStone Asset Management Limited, where she developed practical experience in investment analysis and asset management operations.\n\nAt Prime Capital & Investment Limited, she supports investment decision-making through research, portfolio support, and business management functions.",
     },
     {
       name: "Husseinat Alabi",
@@ -299,7 +299,7 @@ export default function AboutPage() {
       icon: Scale,
       photo: "/hussaina.jpeg",
       fullInfo:
-        "Husseinat Alabi is a legal and compliance professional with experience supporting legal, administrative, and regulatory compliance operations. She holds a LLB from the University of Ilorin and a B.L (Second-Class Upper Division) from the Nigerian Law School. She gained practical experience through her NYSC legal internship at the Gas Aggregation Company of Nigeria and as a Legal Intern at Omaplex Law Firm, where she supported legal documentation, compliance processes, and administrative functions. At Prime Capital & Investment Limited, she supports legal and compliance activities in line with regulatory and governance requirement",
+        "Husseinat Alabi is a legal and compliance professional with experience supporting legal, administrative, and regulatory compliance operations. She holds a LLB from the University of Ilorin and a B.L (Second-Class Upper Division) from the Nigerian Law School.\n\nShe gained practical experience through her NYSC legal internship at the Gas Aggregation Company of Nigeria and as a Legal Intern at Omaplex Law Firm, where she supported legal documentation, compliance processes, and administrative functions.\n\nAt Prime Capital & Investment Limited, she supports legal and compliance activities in line with regulatory and governance requirement",
     },
   ];
 
@@ -573,8 +573,12 @@ export default function AboutPage() {
                         {leader.role}
                       </p>
                     </div>
-                    <DialogDescription className="text-base text-foreground leading-relaxed">
-                      {leader.fullInfo}
+                    <DialogDescription asChild>
+                      <div className="text-base text-foreground leading-relaxed space-y-4">
+                        {leader.fullInfo.split("\n\n").map((paragraph, i) => (
+                          <p key={i}>{paragraph}</p>
+                        ))}
+                      </div>
                     </DialogDescription>
                   </DialogHeader>
                 </DialogContent>
@@ -641,8 +645,12 @@ export default function AboutPage() {
                           {leader.role}
                         </p>
                       </div>
-                      <DialogDescription className="text-base text-foreground leading-relaxed">
-                        {leader.fullInfo}
+                      <DialogDescription asChild>
+                        <div className="text-base text-foreground leading-relaxed space-y-4">
+                          {leader.fullInfo.split("\n\n").map((paragraph, i) => (
+                            <p key={i}>{paragraph}</p>
+                          ))}
+                        </div>
                       </DialogDescription>
                     </DialogHeader>
                   </DialogContent>
