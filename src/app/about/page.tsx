@@ -229,14 +229,6 @@ export default function AboutPage() {
 
   const directors = [
     {
-      name: "Mounir Haliru Gwarzo",
-      role: "Director",
-      bio: "A distinguished capital markets professional with over 37 years of experience across regulation, financial services, and corporate leadership.",
-      photo: "/ceo.jpg",
-      fullInfo:
-        "Mounir Haliru Gwarzo is a distinguished capital markets professional with over 37 years of experience across regulation, financial services, and corporate leadership. He holds a BSc in Economics from Bayero University, Kano, an MBA from Robert Kennedy College, York St. John University (UK), and is an alumnus of two prestigious Business schools namely: INSEAD The Business school of the world, Paris and SAID Business School, University of Oxford. He previously served as Director-General and Chief Executive Officer of the Securities and Exchange Commission (2015–2020), following his role as Executive Commissioner of the Commission.He was Chairman of African and Middle East Regional Committee of the International Organization of Securities Commission (IOSCO), Member of the Board and Management committee. He is also a Fellow of the Chartered Institute of Stockbrokers of Nigeria. Mr. Gwarzo’s career spans senior roles across the public and private sectors, including The Nigerian Stock Exchange, Century Merchant Bank, Federal Mortgage Bank of Nigeria, and Media Trust Limited, where he served as Group Chief Executive Officer. He brings extensive experience as both a capital market regulator and operator, with deep expertise in Nigeria’s primary and secondary markets.",
-    },
-    {
       name: "Bashir Haliru Tahir",
       role: "Director",
       bio: "Contributes strategic oversight, governance insight, and risk management expertise. Founder of a real estate construction company and aviation professional with over 15 years of experience.",
@@ -256,13 +248,13 @@ export default function AboutPage() {
 
   const management = [
     {
-      name: "Mounir Haliru Gwarzo",
+      name: "Kunle J. Adeboye",
       role: "Chief Executive Officer",
-      bio: "Former Director-General of the SEC (2015–2020). Fellow of the Chartered Institute of Stockbrokers of Nigeria. Alumnus of INSEAD and Oxford SAID Business School.",
+      bio: "Managing Director/CEO with more than 25 years of executive experience across asset management, pensions, financial services and consumer markets.",
       icon: Briefcase,
-      photo: "/ceo.jpg",
+      photo: "/kunle.jpg",
       fullInfo:
-        "Mounir Haliru Gwarzo is a distinguished capital markets professional with over 37 years of experience across regulation, financial services, and corporate leadership. He holds a BSc in Economics from Bayero University, Kano, an MBA from Robert Kennedy College, York St. John University (UK), and is an alumnus of two prestigious Business schools namely: INSEAD The Business school of the world, Paris and SAID Business School, University of Oxford. He previously served as Director-General and Chief Executive Officer of the Securities and Exchange Commission (2015–2020), following his role as Executive Commissioner of the Commission.He was Chairman of African and Middle East Regional Committee of the International Organization of Securities Commission (IOSCO), Member of the Board and Management committee. He is also a Fellow of the Chartered Institute of Stockbrokers of Nigeria. Mr. Gwarzo’s career spans senior roles across the public and private sectors, including The Nigerian Stock Exchange, Century Merchant Bank, Federal Mortgage Bank of Nigeria, and Media Trust Limited, where he served as Group Chief Executive Officer. He brings extensive experience as both a capital market regulator and operator, with deep expertise in Nigeria’s primary and secondary markets.",
+        "Kunle J. Adeboye is Managing Director and Chief Executive Officer of Prime Capital & Investment Ltd. He has more than 25 years of executive experience across asset management, pensions, financial services and consumer markets, with a career spanning institutional leadership, investment oversight, business transformation and growth. A pioneer professional in Nigeria's Contributory Pension Scheme, Kunle contributed to the growth and development of two Pension Fund Administrators and subsequently provided executive leadership at another PFA. Over the course of his career, he has contributed to the management and strategic oversight of pension and investment assets in excess of ₦200 billion. Kunle is a graduate of the University of Ibadan and holds an MBA in Strategic Business Management. He is a Certified Management Consultant and a Fellow of both the Institute of Management Consultants and the Chartered Institute of Loan & Risk Management of Nigeria. In 2018, he was selected among 70 distinguished alumni featured in the University of Ibadan's 70th Anniversary celebrations, in recognition of professional excellence and national impact. In his spare time, Kunle writes on leadership, governance and national development, contributing to the wider conversation on Nigeria's institutional and economic progress. At Prime Capital, Kunle is focused on building an enduring investment institution anchored on disciplined growth, sound governance and long-term value creation for clients and stakeholders.",
     },
     {
       name: "Buhari Suleiman Alfa",
@@ -535,11 +527,11 @@ export default function AboutPage() {
               Strategic oversight and governance from seasoned industry leaders.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          <div className="flex flex-wrap justify-center gap-8 mb-24">
             {directors.map((leader, index) => (
               <Dialog key={index}>
                 <DialogTrigger asChild>
-                  <Card className="hover:shadow-xl transition-all duration-300 border-none bg-background cursor-pointer group">
+                  <Card className="w-full sm:w-80 hover:shadow-xl transition-all duration-300 border-none bg-background cursor-pointer group">
                     <CardContent className="pt-8">
                       <div className="h-24 w-24 rounded-full bg-primary/10 flex items-center justify-center mb-6 overflow-hidden">
                         <Image
