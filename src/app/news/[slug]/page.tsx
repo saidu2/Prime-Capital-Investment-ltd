@@ -1,13 +1,22 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CategoryBadge } from "@/components/articles/category-badge";
 import { Footer } from "@/components/footer";
+import { Reveal } from "@/components/motion/reveal";
 import { Navigation } from "@/components/navigation";
-import { Button } from "@/components/ui/button";
+import { formatNewsDate } from "@/components/news/news-card";
 import { getArticleBySlug } from "@/db/queries/articles";
-import type { ArticleCategory } from "@/lib/types/articles";
+
+/** Article lookup that treats an unreachable database as "not found". */
+async function loadArticle(slug: string) {
+  try {
+    return await getArticleBySlug(slug);
+  } catch (error) {
+    console.error("Article page: could not load article", error);
+    return null;
+  }
+}
 
 interface ArticlePageProps {
   params: Promise<{
@@ -19,7 +28,7 @@ export async function generateMetadata({
   params,
 }: ArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = await loadArticle(slug);
 
   if (!article) {
     return { title: "Article Not Found" };
@@ -53,101 +62,103 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+  const article = await loadArticle(slug);
 
   if (!article) {
     notFound();
   }
 
+  const meta = [
+    article.author?.name,
+    article.publishedAt ? formatNewsDate(article.publishedAt) : null,
+    article.readTime,
+  ].filter(Boolean);
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-white">
       <Navigation />
 
-      <article className="flex-1 pt-28 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <Button variant="ghost" size="sm" asChild className="mb-6">
-            <Link href="/news">
-              <ArrowLeft className="h-4 w-4 mr-2" />
+      <article className="flex-1">
+        {/* Header */}
+        <header className="relative isolate overflow-hidden bg-ink px-4 pt-[calc(var(--header-h)+4.5rem)] pb-16 text-white sm:px-6 md:pb-24 lg:px-8">
+          <span
+            aria-hidden
+            className="absolute inset-0 -z-10 bg-[radial-gradient(60%_70%_at_80%_0%,rgba(201,162,75,0.16),transparent_70%)]"
+          />
+          <div className="mx-auto max-w-4xl">
+            <Link
+              href="/news"
+              className="group inline-flex items-center gap-3 text-[12.5px] font-bold uppercase tracking-[0.18em] text-white/70 transition-colors hover:text-white"
+            >
+              <ArrowLeft
+                aria-hidden
+                className="h-4 w-4 transition-transform duration-500 ease-soft group-hover:-translate-x-1"
+              />
               Back to News
             </Link>
-          </Button>
-
-          {/* Article Header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <CategoryBadge category={article.category as ArticleCategory} />
-              {article.featured && (
-                <span className="px-2 py-1 text-xs rounded bg-primary/10 text-primary font-semibold">
-                  Featured
-                </span>
-              )}
-            </div>
-
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 text-balance">
+            <p className="mt-10 text-[12px] font-bold uppercase tracking-[0.24em] text-gold-soft">
+              {article.category}
+              {article.featured ? " · Featured" : ""}
+            </p>
+            <h1 className="mt-5 font-display text-[2.3rem] font-normal leading-[1.1] tracking-tight md:text-[3.6rem]">
               {article.title}
             </h1>
-
-            <p className="text-xl text-muted-foreground mb-6 text-pretty">
-              {article.excerpt}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground border-t border-b py-4">
-              {article.author && (
-                <div className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  <span>{article.author.name}</span>
-                </div>
-              )}
-              {article.publishedAt && (
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span>
-                    {new Date(article.publishedAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+            {article.excerpt && (
+              <p className="mt-7 max-w-3xl text-[18px] leading-[1.75] text-text-muted-light md:text-[20px]">
+                {article.excerpt}
+              </p>
+            )}
+            {meta.length > 0 && (
+              <p className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 pt-6 text-[14px] text-white/60">
+                {meta.map((m, i) => (
+                  <span key={String(m)} className="flex items-center gap-4">
+                    {i > 0 && (
+                      <span
+                        aria-hidden
+                        className="h-1 w-1 rotate-45 bg-gold-refined"
+                      />
+                    )}
+                    {m}
                   </span>
-                </div>
-              )}
-              {article.readTime && (
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span>{article.readTime}</span>
-                </div>
-              )}
-            </div>
-          </header>
+                ))}
+              </p>
+            )}
+          </div>
+        </header>
 
-          {/* Cover Image */}
-          {article.coverImageUrl && (
-            <div className="mb-8 rounded-lg overflow-hidden">
+        {/* Cover */}
+        {article.coverImageUrl && (
+          <div className="bg-linear-to-b from-ink from-50% to-white to-50% px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-5xl overflow-hidden shadow-[0_40px_80px_-40px_rgba(10,16,36,0.5)]">
               {/* biome-ignore lint/performance/noImgElement: External URLs not optimizable with next/image */}
               <img
                 src={article.coverImageUrl}
                 alt={article.title}
-                className="w-full h-auto"
+                className="h-auto w-full"
               />
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Article Content */}
+        {/* Body */}
+        <div className="px-4 py-16 sm:px-6 md:py-24 lg:px-8">
           <div
-            className="prose prose-lg max-w-none
-              prose-headings:font-display prose-headings:font-bold prose-headings:text-foreground
-              prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-              prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-              prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-6
-              prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-foreground prose-strong:font-semibold
-              prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
-              prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
-              prose-li:text-muted-foreground prose-li:mb-2
-              prose-blockquote:border-l-4 prose-blockquote:border-primary
-              prose-blockquote:pl-6 prose-blockquote:italic
-              prose-blockquote:text-muted-foreground"
+            className="article-body mx-auto max-w-3xl"
+            // biome-ignore lint/security/noDangerouslySetInnerHtml: admin-authored article HTML (unchanged)
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
+          <Reveal className="mx-auto mt-16 flex max-w-3xl justify-between border-t border-ink/10 pt-8">
+            <Link
+              href="/news"
+              className="group inline-flex items-center gap-3 text-[13px] font-bold uppercase tracking-[0.18em] text-ink"
+            >
+              All News &amp; Insights
+              <ArrowRight
+                aria-hidden
+                className="h-4 w-4 transition-transform duration-500 ease-soft group-hover:translate-x-1"
+              />
+            </Link>
+          </Reveal>
         </div>
       </article>
 

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 
-const TICKER_SYMBOLS = [
+/* Same NGX symbols as the ticker on the current live site (2026-11-22). */
+const SYMBOLS = [
   "ACCESSCORP",
   "DANGSUGAR",
   "BUACEMENT",
@@ -20,56 +21,57 @@ const TICKER_SYMBOLS = [
   "NB",
   "SEPLAT",
   "OKOMUOIL",
-].map((proName) => ({ description: "", proName: `NSENG:${proName}` }));
+].map((s) => ({ proName: `NSENG:${s}`, description: "" }));
 
 /**
- * TradingView Ticker Tape widget (legacy embed), NGX stocks.
- *
- * The legacy embed works by TradingView's loader script reading the
- * JSON config out of the very <script> tag that loaded it, so the
- * script element has to be created and injected manually (Next.js's
- * <Script> component strips inline text content from tags that also
- * have a src, which breaks this).
- *
- * TradingView always renders a small "Ticker tape by TradingView"
- * caption line beneath the strip itself (it's baked into the widget's
- * own iframe, not something the JSON config can turn off). We clip it
- * out by constraining the outer wrapper to the ticker row's own
- * height with overflow-hidden.
+ * TradingView ticker tape (live NGX prices). The embed script is injected
+ * once, after the page is idle, so it never delays first paint.
  */
-export function TickerTape() {
-  const containerRef = useRef<HTMLDivElement>(null);
+function TickerTapeImpl() {
+  const box = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const el = box.current;
+    if (!el || el.querySelector("script")) return;
 
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      symbols: TICKER_SYMBOLS,
-      showSymbolLogo: true,
-      isTransparent: false,
-      displayMode: "regular",
-      colorTheme: "dark",
-      locale: "en",
-    });
-
-    container.appendChild(script);
-
-    return () => {
-      container.innerHTML = "";
+    const inject = () => {
+      const script = document.createElement("script");
+      script.src =
+        "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+      script.async = true;
+      script.type = "text/javascript";
+      script.innerHTML = JSON.stringify({
+        symbols: SYMBOLS,
+        showSymbolLogo: true,
+        isTransparent: true,
+        displayMode: "compact",
+        colorTheme: "dark",
+        locale: "en",
+      });
+      el.appendChild(script);
     };
+
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void) => number;
+    };
+    if (w.requestIdleCallback) w.requestIdleCallback(inject);
+    else setTimeout(inject, 600);
   }, []);
 
   return (
-    <div className="h-[46px] w-full overflow-hidden">
-      <div className="tradingview-widget-container" ref={containerRef}>
+    <div
+      aria-label="Live Nigerian Exchange share prices"
+      role="region"
+      className="relative h-(--ticker-h) overflow-hidden border-b border-white/[0.07] bg-ink"
+    >
+      <div
+        ref={box}
+        className="tradingview-widget-container absolute inset-x-0 top-0"
+      >
         <div className="tradingview-widget-container__widget" />
       </div>
     </div>
   );
 }
+
+export const TickerTape = memo(TickerTapeImpl);

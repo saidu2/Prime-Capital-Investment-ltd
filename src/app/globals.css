@@ -14,9 +14,9 @@
   --popover: #ffffff;
   --popover-foreground: #0a1628;
 
-  /* Primary - Gold */
-  --primary: #d4af37;
-  --primary-foreground: #0a1628;
+  /* Primary - Refined (champagne) gold */
+  --primary: #c9a24b;
+  --primary-foreground: #0a1024;
 
   /* Secondary - Soft Cream */
   --secondary: #f5f2ed;
@@ -37,7 +37,7 @@
   /* Borders & Inputs */
   --border: rgba(10, 22, 40, 0.08);
   --input: rgba(10, 22, 40, 0.08);
-  --ring: rgba(212, 175, 55, 0.3);
+  --ring: rgba(201, 162, 75, 0.35);
 
   /* Charts */
   --chart-1: #d4af37;
@@ -59,13 +59,36 @@
   --sidebar-border: rgba(10, 22, 40, 0.08);
   --sidebar-ring: rgba(212, 175, 55, 0.3);
 
-  /* Brand Colors */
+  /* Brand Colors (legacy — kept so existing classes don't shift) */
   --gold: #d4af37;
   --gold-light: #f4d03f;
   --gold-dark: #b8941f;
   --navy: #0a1628;
   --navy-light: #1e3a5f;
   --cream: #f5f2ed;
+  --charcoal: #0a1628;
+
+  /* Cardinal Standard — Midnight Ink + Refined Gold (PCI-BUILD-SPEC §1) */
+  --ink: #0a1024;
+  --ink-2: #0e1630;
+  --gold-refined: #c9a24b;
+  --gold-soft: #d8b86e;
+  --paper: #f7f6f2;
+  --text-light: #ffffff;
+  --text-muted-light: rgba(255, 255, 255, 0.72);
+  --text-dark: #0a1024;
+  --text-muted-dark: #5a6072;
+  --hairline-gold: rgba(201, 162, 75, 0.35);
+  --hairline-light: rgba(255, 255, 255, 0.12);
+
+  /* Motion — soft, never bouncy (§3) */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-base: 0.6s;
+
+  /* Layout */
+  /* Fixed header = ticker strip (--ticker-h) + 80px menu row. */
+  --ticker-h: 46px;
+  --header-h: 126px;
 }
 
 .dark {
@@ -76,8 +99,8 @@
   --card-foreground: #fdfcfa;
   --popover: #1e3a5f;
   --popover-foreground: #fdfcfa;
-  --primary: #d4af37;
-  --primary-foreground: #0a1628;
+  --primary: #c9a24b;
+  --primary-foreground: #0a1024;
   --secondary: #1e3a5f;
   --secondary-foreground: #fdfcfa;
   --muted: #1e3a5f;
@@ -101,9 +124,10 @@
 
 @theme {
   /* Typography */
-  --font-display: var(--font-display), "Playfair Display", Georgia, serif;
+  --font-display:
+    var(--font-display), "Noto Serif Display", "Didot", Georgia, serif;
   --font-body:
-    var(--font-body), "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    var(--font-body), "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, sans-serif;
   --font-sans: var(--font-body);
   --font-mono:
@@ -139,6 +163,25 @@
   --color-gold-light: var(--gold-light);
   --color-gold-dark: var(--gold-dark);
   --color-charcoal: var(--charcoal);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-cream: var(--cream);
+
+  /* Cardinal Standard tokens → bg-ink, text-gold-refined, bg-paper, etc. */
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-gold-refined: var(--gold-refined);
+  --color-gold-soft: var(--gold-soft);
+  --color-paper: var(--paper);
+  --color-text-light: var(--text-light);
+  --color-text-muted-light: var(--text-muted-light);
+  --color-text-dark: var(--text-dark);
+  --color-text-muted-dark: var(--text-muted-dark);
+  --color-hairline-gold: var(--hairline-gold);
+  --color-hairline-light: var(--hairline-light);
+
+  /* Easing → ease-soft */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -184,22 +227,65 @@
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+    font-kerning: normal;
+    text-wrap: balance;
   }
 
-  /* Smooth scrolling */
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Smooth scrolling — native fallback only; Lenis takes over when active.
+     scroll-padding keeps #anchor targets clear of the fixed header. */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+  }
+
+  /* Lenis' recommended base CSS: stop native smooth-scroll fighting Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
   }
 
   /* Selection styling */
   ::selection {
-    background-color: rgba(212, 175, 55, 0.25);
-    color: #0a1628;
+    background-color: rgba(201, 162, 75, 0.28);
+    color: #0a1024;
   }
 
   ::-moz-selection {
-    background-color: rgba(212, 175, 55, 0.25);
-    color: #0a1628;
+    background-color: rgba(201, 162, 75, 0.28);
+    color: #0a1024;
+  }
+}
+
+/* Respect OS reduced-motion: show content, skip animation (§0) */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -207,6 +293,7 @@
   /* Custom font utilities */
   .font-display {
     font-family: var(--font-display);
+    font-feature-settings: "kern", "liga";
   }
 
   .font-body {
@@ -244,6 +331,33 @@
   .hover-lift:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px -10px rgba(10, 22, 40, 0.15);
+  }
+
+  /* Light sweep across a button on hover/focus (gold CTAs) */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 45%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+    transform: translateX(-130%) skewX(-20deg);
+    pointer-events: none;
+  }
+
+  .btn-sheen:hover::after,
+  .btn-sheen:focus-visible::after {
+    animation: sheen 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   /* Elevated card shadow */
@@ -305,6 +419,113 @@
   }
 }
 
+/* ---- Hero: slow push-in — the towers drift toward the viewer ---- */
+@keyframes push-in {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.16) translate3d(0, 0, 0);
+  }
+}
+
+.push-in {
+  will-change: transform;
+  animation: push-in 12s cubic-bezier(0.3, 0.1, 0.4, 1) both;
+}
+
+/* Inner-page banners: a gentler, longer push-in that comes to rest */
+@keyframes push-in-slow {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.push-in-slow {
+  will-change: transform;
+  animation: push-in-slow 18s cubic-bezier(0.25, 0.1, 0.3, 1) both;
+}
+
+/* ---- Hero: slide timer hairline ---- */
+@keyframes hero-progress {
+  from {
+    transform: translateY(-50%) scaleX(0);
+  }
+  to {
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+.hero-progress {
+  animation-name: hero-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+/* ---- About: philosophy seal + colour story ---- */
+@keyframes seal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.seal-spin {
+  transform-origin: 50% 50%;
+  animation: seal-spin 80s linear infinite;
+}
+@keyframes seal-sheen {
+  0%,
+  70% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+.seal-sheen {
+  animation: seal-sheen 9s var(--ease-soft) infinite;
+}
+@keyframes gold-drift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.gold-leaf {
+  background-image: linear-gradient(
+    120deg,
+    #a8843a 0%,
+    #c9a24b 22%,
+    #e6cd8e 42%,
+    #c9a24b 58%,
+    #9c7a33 80%,
+    #c9a24b 100%
+  );
+  background-size: 260% 260%;
+  animation: gold-drift 16s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .seal-spin,
+  .seal-sheen,
+  .gold-leaf {
+    animation: none;
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-130%) skewX(-20deg);
+  }
+  to {
+    transform: translateX(260%) skewX(-20deg);
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
@@ -362,7 +583,7 @@
 
 /* Focus visible styling */
 :focus-visible {
-  outline: 2px solid rgba(212, 175, 55, 0.5);
+  outline: 2px solid rgba(201, 162, 75, 0.6);
   outline-offset: 2px;
 }
 
@@ -402,4 +623,127 @@
   height: 100%;
   object-fit: contain;
   object-position: center bottom;
+}
+
+/* ---- News article body (admin-authored HTML) ---- */
+.article-body {
+  color: var(--text-muted-dark);
+  font-size: 18px;
+  line-height: 1.9;
+}
+.article-body > * + * {
+  margin-top: 1.4em;
+}
+.article-body h2,
+.article-body h3,
+.article-body h4 {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.article-body h2 {
+  font-size: 2rem;
+  margin-top: 2.2em;
+}
+.article-body h3 {
+  font-size: 1.5rem;
+  margin-top: 1.8em;
+}
+.article-body h4 {
+  font-size: 1.25rem;
+  margin-top: 1.6em;
+}
+.article-body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--gold-refined);
+  text-underline-offset: 4px;
+  transition: color 0.3s;
+}
+.article-body a:hover {
+  color: var(--gold-refined);
+}
+.article-body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.article-body ul,
+.article-body ol {
+  padding-left: 1.4em;
+}
+.article-body ul {
+  list-style: none;
+}
+.article-body ul > li {
+  position: relative;
+}
+.article-body ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.2em;
+  top: 0.78em;
+  width: 6px;
+  height: 6px;
+  background: var(--gold-refined);
+  transform: rotate(45deg);
+}
+.article-body ol {
+  list-style: decimal;
+}
+.article-body ol > li::marker {
+  color: var(--gold-refined);
+  font-family: var(--font-display);
+}
+.article-body li + li {
+  margin-top: 0.5em;
+}
+.article-body blockquote {
+  border-left: 2px solid var(--gold-refined);
+  padding: 0.4em 0 0.4em 1.5em;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+.article-body img {
+  width: 100%;
+  height: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.article-body hr {
+  border: 0;
+  border-top: 1px solid rgba(10, 16, 36, 0.1);
+  margin: 3em 0;
+}
+
+/* ---- Concierge button: one slow, quiet pulse every few seconds ---- */
+@keyframes concierge-pulse {
+  0%,
+  70% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+.concierge-pulse {
+  animation: concierge-pulse 6s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .concierge-pulse {
+    animation: none;
+  }
+}
+
+/* Search palette input: the panel's gold top rule already marks focus. */
+.search-input:focus-visible {
+  outline: none;
 }
