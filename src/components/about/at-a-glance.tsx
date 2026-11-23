@@ -16,7 +16,7 @@ const ITEMS = [
   {
     icon: UserRoundCheck,
     title: "Leadership & Expertise",
-    text: "Five directors and nine management committee members bring experience in pensions, capital markets, law, finance and technology.",
+    text: "Five directors and an experienced management committee bring experience in pensions, capital markets, law, finance and technology.",
   },
   {
     icon: Building,

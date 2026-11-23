@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
    with the figures: they describe leadership experience in prior roles. */
 const STATS = [
   { prefix: "", value: 40, suffix: "+", label: "years of finance leadership" },
-  { prefix: "₦", value: 18, suffix: "tn+", label: "PenCom investment reviews" },
   { prefix: "₦", value: 200, suffix: "bn+", label: "prior asset stewardship" },
   {
     prefix: "",
@@ -58,11 +57,11 @@ function Counter({
 export function PropositionStats() {
   return (
     <div className="mt-16 md:mt-20">
-      <ul className="grid grid-cols-2 gap-y-12 border-t border-ink/10 pt-12 lg:grid-cols-4">
-        {STATS.map((s, i) => (
+      <ul className="grid gap-y-12 border-t border-ink/10 pt-12 sm:grid-cols-3">
+        {STATS.map((s) => (
           <li
             key={s.label}
-            className={`px-4 text-center ${i % 2 === 1 ? "border-l border-ink/10" : ""} lg:border-l lg:first:border-l-0`}
+            className="px-4 text-center sm:border-l sm:border-ink/10 sm:first:border-l-0"
           >
             <p className="font-display text-[2.6rem] leading-none text-ink md:text-[3.6rem]">
               <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
