@@ -4,7 +4,7 @@ import type React from "react";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Prime Capital & Investment Limited — our mission, vision, corporate philosophy, and the experienced team driving long-term wealth creation in Nigeria.",
+    "Learn about Prime Capital & Investment Limited: our mission, vision, corporate philosophy, and the experienced team driving long-term wealth creation in Nigeria.",
   alternates: { canonical: "https://primecapital.ng/about" },
   openGraph: {
     title: "About Prime Capital – Our Mission, Vision & Team",

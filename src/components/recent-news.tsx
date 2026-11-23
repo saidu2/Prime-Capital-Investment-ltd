@@ -1,12 +1,11 @@
 "use client";
 
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export interface ArticleSummary {
   id: string;
@@ -30,141 +29,66 @@ interface RecentNewsProps {
   articles: ArticleSummary[];
 }
 
-export function SignalsSection({ articles = [] }: RecentNewsProps) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
+/* Used when an article has no cover image. */
+const FALLBACK_COVERS = ["/hero-2.jpg", "/hero-1.jpg", "/hero-3.jpg"];
 
-  useEffect(() => {
-    if (!sectionRef.current || !cursorRef.current) return;
-
-    const section = sectionRef.current;
-    const cursor = cursorRef.current;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      gsap.to(cursor, {
-        x: x,
-        y: y,
-        duration: 0.5,
-        ease: "power3.out",
-      });
-    };
-
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
-
-    section.addEventListener("mousemove", handleMouseMove);
-    section.addEventListener("mouseenter", handleMouseEnter);
-    section.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      section.removeEventListener("mousemove", handleMouseMove);
-      section.removeEventListener("mouseenter", handleMouseEnter);
-      section.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!sectionRef.current || !headerRef.current || !cardsRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Header slide in from left
-      gsap.fromTo(
-        headerRef.current,
-        { x: -60, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-
-      const cards = cardsRef.current?.querySelectorAll("article");
-      if (cards) {
-        gsap.fromTo(
-          cards,
-          { x: -100, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 90%",
-              toggleActions: "play none none reverse",
-            },
-          },
-        );
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
+/** Shared frame for the news section (also used by the loading state). */
+export function NewsFrame({ children }: { children: ReactNode }) {
   return (
     <section
       id="signals"
-      ref={sectionRef}
-      className="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8"
+      className="bg-paper px-4 py-24 sm:px-6 md:py-32 lg:px-8"
     >
-      <div className="max-w-7xl mx-auto">
-        <div
-          ref={cursorRef}
-          className={cn(
-            "pointer-events-none absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50",
-            "w-12 h-12 rounded-full border-2 border-accent bg-accent/20",
-            "transition-opacity duration-300",
-            isHovering ? "opacity-100" : "opacity-0",
-          )}
-        />
-
-        {/* Section header */}
-        <div ref={headerRef} className="mb-12">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-accent">
-            Recent News
-          </span>
-
-          <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 text-[#0A1628] leading-tight">
-            LATEST UPDATES
-          </h2>
-        </div>
-
-        {/* Horizontal scroll container */}
-        <div
-          ref={(el) => {
-            scrollRef.current = el;
-            cardsRef.current = el;
-          }}
-          className="flex gap-8 overflow-x-auto pb-8 pr-4 scrollbar-hide"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 1, ease: EASE }}
+          className="flex flex-col justify-between gap-8 md:flex-row md:items-end"
         >
-          {articles.length > 0 ? (
-            articles.map((article, index) => (
-              <NewsCard key={article.id} article={article} index={index} />
-            ))
-          ) : (
-            <p className="text-sm text-muted-foreground">
-              No recent news available
+          <div>
+            <p className="text-[12px] font-bold uppercase tracking-[0.28em] text-gold-refined">
+              Recent News
             </p>
-          )}
-        </div>
+            <h2 className="mt-4 font-display text-[2.4rem] font-normal leading-[1.06] tracking-tight text-ink md:text-[3.75rem]">
+              Latest <em className="font-normal text-gold-refined">Updates</em>
+            </h2>
+          </div>
+          <Link
+            href="/news"
+            className="group inline-flex items-center gap-4 text-[13px] font-bold uppercase tracking-[0.18em] text-ink"
+          >
+            News &amp; Insights
+            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 transition-colors duration-500 group-hover:border-ink group-hover:bg-ink group-hover:text-white">
+              <ArrowRight aria-hidden className="h-4 w-4" />
+            </span>
+          </Link>
+        </motion.div>
+        <div className="mt-14 md:mt-16">{children}</div>
       </div>
     </section>
+  );
+}
+
+export function SignalsSection({ articles = [] }: RecentNewsProps) {
+  const list = articles.slice(0, 3);
+  return (
+    <NewsFrame>
+      {list.length > 0 ? (
+        <div className="grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
+          {list.map((article, index) => (
+            <NewsCard key={article.id} article={article} index={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="border border-ink/10 bg-white px-8 py-16 text-center">
+          <p className="font-display text-2xl text-ink">
+            No recent news available
+          </p>
+        </div>
+      )}
+    </NewsFrame>
   );
 }
 
@@ -175,80 +99,62 @@ function NewsCard({
   article: ArticleSummary;
   index: number;
 }) {
-  const formattedDate = article.publishedAt
-    ? new Date(article.publishedAt)
-        .toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-        })
-        .replace(/\//g, ".")
+  const date = article.publishedAt
+    ? new Date(article.publishedAt).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
     : "Draft";
+  const cover =
+    article.coverImageUrl || FALLBACK_COVERS[index % FALLBACK_COVERS.length];
 
   return (
-    <Link href={`/news/${article.slug}`}>
-      <article
-        className={cn(
-          "group relative flex-shrink-0 w-80",
-          "transition-transform duration-500 ease-out",
-          "hover:-translate-y-2 cursor-pointer",
-        )}
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 1, ease: EASE, delay: index * 0.12 }}
+    >
+      <Link
+        href={`/news/${article.slug}`}
+        className="group flex h-full flex-col bg-white transition-shadow duration-700 hover:shadow-[0_30px_60px_-30px_rgba(10,16,36,0.35)]"
       >
-        {/* Card with paper texture effect */}
-        <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 p-8 h-full">
-          {/* Top torn edge effect */}
-          <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
-
-          {/* Issue number and category */}
-          <div className="flex items-baseline justify-between mb-8">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              No. {String(index + 1).padStart(2, "0")}
-            </span>
-            <time className="text-[10px] text-muted-foreground/60">
-              {formattedDate}
-            </time>
-          </div>
-
-          {/* Category badge */}
+        <div className="relative aspect-[16/10] overflow-hidden bg-ink">
+          {/* Cover images are arbitrary URLs from the CMS, so a plain img. */}
+          {/* biome-ignore lint/performance/noImgElement: CMS-hosted covers */}
+          <img
+            src={cover}
+            alt=""
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-[1800ms] ease-soft group-hover:scale-[1.06]"
+          />
           {article.category && (
-            <div className="mb-3">
-              <span className="inline-block px-2 py-1 text-[9px] uppercase tracking-wider bg-accent/10 text-accent border border-accent/20">
-                {article.category}
-              </span>
-            </div>
+            <span className="absolute left-5 top-5 bg-ink/85 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-gold-soft backdrop-blur-sm">
+              {article.category}
+            </span>
           )}
-
-          {/* Title */}
-          <h3 className="font-display text-4xl tracking-tight mb-4 group-hover:text-accent transition-colors duration-300 line-clamp-2">
+        </div>
+        <div className="flex flex-1 flex-col p-7 md:p-8">
+          <time className="text-[13px] text-text-muted-dark">
+            {date}
+            {article.readTime ? ` · ${article.readTime}` : ""}
+          </time>
+          <h3 className="mt-3 line-clamp-3 font-display text-[1.45rem] font-normal leading-snug text-ink transition-colors duration-500 group-hover:text-gold-refined">
             {article.title}
           </h3>
-
-          {/* Divider line */}
-          <div className="w-12 h-px bg-accent/60 mb-6 group-hover:w-full transition-all duration-500" />
-
-          {/* Description */}
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+          <p className="mt-4 line-clamp-3 text-[15px] leading-[1.75] text-text-muted-dark">
             {article.excerpt}
           </p>
-
-          {/* Read time */}
-          {article.readTime && (
-            <div className="mt-4 pt-4 border-t border-border/30">
-              <span className="text-[10px] text-muted-foreground/60">
-                {article.readTime}
-              </span>
-            </div>
-          )}
-
-          {/* Bottom right corner fold effect */}
-          <div className="absolute bottom-0 right-0 w-6 h-6 overflow-hidden">
-            <div className="absolute bottom-0 right-0 w-8 h-8 bg-background rotate-45 translate-x-4 translate-y-4 border-t border-l border-border/30" />
-          </div>
+          <span className="mt-auto inline-flex items-center gap-3 pt-7 text-[12.5px] font-bold uppercase tracking-[0.16em] text-ink">
+            Read More
+            <span
+              aria-hidden
+              className="h-px w-8 bg-gold-refined transition-all duration-700 ease-soft group-hover:w-16"
+            />
+          </span>
         </div>
-
-        {/* Shadow/depth layer */}
-        <div className="absolute inset-0 -z-10 translate-x-1 translate-y-1 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </article>
-    </Link>
+      </Link>
+    </motion.article>
   );
 }

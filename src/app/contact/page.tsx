@@ -1,300 +1,207 @@
-/** biome-ignore-all lint/suspicious/noArrayIndexKey: <> */
-"use client";
-
-import { Clock, Mail, MapPin, Phone, Send, ShieldCheck } from "lucide-react";
-import type React from "react";
-import { useState } from "react";
-import { toast } from "sonner";
+import {
+  Clock,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  ShieldCheck,
+} from "lucide-react";
+import type { Metadata } from "next";
+import { ContactForm } from "@/components/contact/contact-form";
 import { Footer } from "@/components/footer";
+import { Reveal } from "@/components/motion/reveal";
 import { Navigation } from "@/components/navigation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { PageHero } from "@/components/page-hero";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Contact Prime Capital & Investment Limited, No. 3, Sankuru Close, Off Rima Street, Maitama, Abuja. Call +234 (0) 811 183 7348 or email info@primecapital.ng.",
+  alternates: { canonical: "https://primecapital.ng/contact" },
+};
+
+/* All copy and details are existing PCI wording. */
+const CONTACT_INFO = [
+  {
+    icon: MapPin,
+    title: "Abuja Office",
+    details: [
+      "No. 3, Sankuru Close, Off Rima Street,",
+      "Maitama, Abuja",
+      "Nigeria",
+    ],
+    href: "https://maps.google.com/?q=No.+3,+Sankuru+Close,+Maitama,+Abuja,+Nigeria",
+  },
+  {
+    icon: Phone,
+    title: "Telephone",
+    details: ["+234 (0) 811 183 7348", "Mon - Fri: 9:00 AM - 5:00 PM"],
+    href: "tel:+2348111837348",
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    details: ["info@primecapital.ng"],
+    href: "mailto:info@primecapital.ng",
+  },
+  {
+    // From the Corporate Profile deck (2026-11-22).
+    icon: MessageCircle,
+    title: "WhatsApp",
+    details: ["0811 183 7348", "WhatsApp available for document requests."],
+    href: "https://wa.me/2348111837348",
+  },
+  {
+    icon: Clock,
+    title: "Business Hours",
+    details: [
+      "Our office time is 9:00am-5:00pm",
+      "Monday - Friday",
+      "Saturday - Sunday: Closed",
+      "Public Holidays: Closed",
+      "Meetings outside office hours by prior arrangement.",
+    ],
+  },
+];
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
-
-      toast.success(
-        "Thank you for contacting Prime Capital. Our team will get back to you shortly.",
-        {
-          duration: 5000,
-        },
-      );
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
-    } catch (error) {
-      toast.error(
-        "There was an error sending your message. Please try again or contact us directly at info@primecapital.ng",
-        {
-          duration: 7000,
-        },
-      );
-      console.error("Error submitting form:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Abuja Office",
-      details: [
-        "No. 3, Sankuru Close, Off Rima Street,",
-        "Maitama, Abuja",
-        "Nigeria",
-      ],
-    },
-    {
-      icon: Phone,
-      title: "Telephone",
-      details: ["+234 (0) 811 183 7348", "Mon - Fri: 9:00 AM - 5:00 PM"],
-    },
-    {
-      icon: Mail,
-      title: "Email Us",
-      details: ["info@primecapital.ng"],
-    },
-    {
-      icon: Clock,
-      title: "Business Hours",
-      details: [
-        "Our office time is 9:00am-5:00pm",
-        "Monday - Friday",
-        "Saturday - Sunday: Closed",
-        "Public Holidays: Closed",
-      ],
-    },
-  ];
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-white">
       <Navigation />
+      <PageHero
+        title="Connect With Us"
+        crumb="Contact Us"
+        image="/hero-4.jpg"
+        focus="70% 45%"
+      />
 
-      {/* Hero Section */}
-      <section className="pt-28 pb-12 md:pt-36 md:pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-background via-background to-primary/5">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-balance">
-            Connect With <span className="text-primary">Us</span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
+      {/* Intro */}
+      <section className="px-4 pt-24 pb-16 sm:px-6 md:pt-32 md:pb-20 lg:px-8">
+        <Reveal className="mx-auto max-w-4xl text-center">
+          <span
+            aria-hidden
+            className="mx-auto mb-9 block h-14 w-px bg-linear-to-b from-transparent to-gold-refined"
+          />
+          <p className="font-display text-[1.5rem] leading-[1.5] text-ink md:text-[2.1rem]">
             Whether you are looking to preserve wealth or create a new legacy,
-            our team of experts is ready to guide you through Nigeria's complex
-            financial landscape.
+            our team of experts is ready to guide you through Nigeria&apos;s
+            complex financial landscape.
           </p>
+        </Reveal>
+      </section>
+
+      {/* Form + details */}
+      <section className="px-4 pb-24 sm:px-6 md:pb-32 lg:px-8">
+        <div className="mx-auto grid max-w-7xl overflow-hidden shadow-[0_50px_100px_-50px_rgba(10,16,36,0.45)] lg:grid-cols-12">
+          {/* Details panel */}
+          <Reveal className="relative isolate bg-ink p-9 text-white md:p-12 lg:col-span-5 lg:p-14">
+            <span
+              aria-hidden
+              className="absolute inset-0 -z-10 opacity-[0.06] [background-image:repeating-linear-gradient(115deg,#c9a24b_0_1px,transparent_1px_70px)]"
+            />
+            <span
+              aria-hidden
+              className="absolute inset-0 -z-10 bg-[radial-gradient(70%_50%_at_0%_0%,rgba(201,162,75,0.18),transparent_70%)]"
+            />
+            <h2 className="font-display text-[2rem] font-normal leading-tight md:text-[2.5rem]">
+              Contact Information
+            </h2>
+            <span
+              aria-hidden
+              className="mt-6 block h-px w-14 bg-gold-refined"
+            />
+            <ul className="mt-10 space-y-9">
+              {CONTACT_INFO.map((info) => {
+                const body = (
+                  <>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-gold-refined/40 text-gold-soft transition-colors duration-500 group-hover:bg-gold-refined group-hover:text-ink">
+                      <info.icon
+                        aria-hidden
+                        strokeWidth={1.4}
+                        className="h-5 w-5"
+                      />
+                    </span>
+                    <span>
+                      <span className="block text-[12px] font-bold uppercase tracking-[0.22em] text-gold-soft">
+                        {info.title}
+                      </span>
+                      <span className="mt-2 block space-y-1 text-[15.5px] leading-relaxed text-white/80">
+                        {info.details.map((d) => (
+                          <span key={d} className="block">
+                            {d}
+                          </span>
+                        ))}
+                      </span>
+                    </span>
+                  </>
+                );
+                return (
+                  <li key={info.title}>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        target={
+                          info.href.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          info.href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        className="group flex gap-5"
+                      >
+                        {body}
+                      </a>
+                    ) : (
+                      <div className="group flex gap-5">{body}</div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
+
+          {/* Form */}
+          <Reveal
+            delay={0.12}
+            className="bg-white p-9 md:p-12 lg:col-span-7 lg:p-16"
+          >
+            <h2 className="font-display text-[2rem] font-normal leading-tight text-ink md:text-[2.5rem]">
+              Send Us a{" "}
+              <em className="font-normal text-gold-refined">Message</em>
+            </h2>
+            <p className="mt-4 max-w-xl text-[16px] leading-[1.8] text-text-muted-dark">
+              Fill out the form below and a member of our investment team will
+              contact you within one business day.
+            </p>
+            <div className="mt-12">
+              <ContactForm />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Contact Form & Info */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="font-display text-3xl font-bold mb-6">
-                Send Us a Message
-              </h2>
-              <p className="text-muted-foreground mb-10 text-lg">
-                Fill out the form below and a member of our investment team will
-                contact you within one business day.
-              </p>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Full Name <span className="text-primary">*</span>
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Enter your full name"
-                      className="bg-muted/30 border-border focus:border-primary"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Email Address <span className="text-primary">*</span>
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="name@company.com"
-                      className="bg-muted/30 border-border focus:border-primary"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Phone Number
-                    </label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+234 ..."
-                      className="bg-muted/30 border-border focus:border-primary"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Inquiry Type <span className="text-primary">*</span>
-                    </label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="e.g. Portfolio Management"
-                      className="bg-muted/30 border-border focus:border-primary"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium mb-2"
-                  >
-                    Message <span className="text-primary">*</span>
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="How can we help you achieve your financial goals?"
-                    rows={6}
-                    className="bg-muted/30 border-border focus:border-primary resize-none"
-                    required
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 text-lg font-bold shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? "Sending..." : "Submit Inquiry"}{" "}
-                  <Send className="ml-2 h-5 w-5" />
-                </Button>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 p-4 rounded-xl border border-border">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
-                  Your information is handled with absolute confidentiality in
-                  line with our fiduciary duty.
-                </div>
-              </form>
-            </div>
-
-            <div className="space-y-12">
-              <div>
-                <h2 className="font-display text-3xl font-bold mb-8">
-                  Contact Information
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  {contactInfo.map((info, index) => {
-                    const Icon = info.icon;
-                    return (
-                      <div key={index} className="group">
-                        <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                          <Icon className="h-6 w-6" />
-                        </div>
-                        <h3 className="font-display font-bold text-lg mb-2">
-                          {info.title}
-                        </h3>
-                        <div className="space-y-1 text-muted-foreground">
-                          {info.details.map((detail, idx) => (
-                            <p key={idx}>{detail}</p>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="rounded-3xl overflow-hidden h-[400px] md:h-[500px] relative border border-border shadow-2xl">
-                <iframe
-                  src="https://www.google.com/maps?q=No.+3,+Sankuru+Close,+Maitama,+Abuja,+Nigeria&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
-                  title="Prime Capital Office Location - No. 3, Sankuru Close, Off Rima Street, Maitama, Abuja, Nigeria"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Map */}
+      <section className="group relative h-[420px] overflow-hidden bg-paper md:h-[520px]">
+        <iframe
+          src="https://www.google.com/maps?q=No.+3,+Sankuru+Close,+Maitama,+Abuja,+Nigeria&output=embed"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="absolute inset-0 h-full w-full border-0 grayscale-[0.85] contrast-[1.05] transition-[filter] duration-1000 ease-soft group-hover:grayscale-0"
+          title="Prime Capital Office Location - No. 3, Sankuru Close, Off Rima Street, Maitama, Abuja, Nigeria"
+        />
       </section>
 
-      {/* SEC Verification */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/50 border-y border-border">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm text-muted-foreground leading-relaxed">
+      {/* SEC verification */}
+      <section className="border-t border-ink/[0.06] bg-paper px-4 py-14 sm:px-6 lg:px-8">
+        <Reveal className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center md:flex-row md:text-left">
+          <ShieldCheck
+            aria-hidden
+            strokeWidth={1.2}
+            className="h-10 w-10 shrink-0 text-gold-refined"
+          />
+          <p className="text-[14.5px] leading-[1.85] text-text-muted-dark">
             The SEC advises the public to always verify the registration status
             of any entity or investment product with the Commission before
             dealing with them to avoid investment scams. For verification or
@@ -302,12 +209,14 @@ export default function ContactPage() {
             website:{" "}
             <a
               href="https://www.sec.gov.ng"
-              className="text-primary hover:underline font-medium"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-ink underline decoration-gold-refined underline-offset-4 hover:text-gold-refined"
             >
               www.sec.gov.ng
             </a>
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Footer />

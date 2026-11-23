@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Investment Products & Financial Services – Prime Capital Nigeria",
     description:
-      "From Treasury Bills and FGN Bonds to Islamic finance and alternative investments — Prime Capital offers professionally managed, SEC-regulated investment solutions.",
+      "From Treasury Bills and FGN Bonds to Islamic finance and alternative investments, Prime Capital offers professionally managed, SEC-regulated investment solutions.",
     url: "https://primecapital.ng/services",
   },
 };

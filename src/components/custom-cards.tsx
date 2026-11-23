@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const signals = [
   {
     title: "Confidentiality & Data Sovereignty",
-    note: "We treat client information as sacred capital. Every portfolio detail, transaction, and strategic discussion is protected by strict confidentiality protocols, secure infrastructure, and governance controls. Discretion is not optional—it is a core responsibility.",
+    note: "We treat client information as sacred capital. Every portfolio detail, transaction, and strategic discussion is protected by strict confidentiality protocols, secure infrastructure, and governance controls. Discretion is not optional; it is a core responsibility.",
   },
   {
     title: "Integrity & Transparency",

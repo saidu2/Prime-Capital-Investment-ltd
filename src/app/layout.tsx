@@ -1,24 +1,27 @@
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import type React from "react";
 import "./globals.css";
-import { Outfit, Playfair_Display } from "next/font/google";
+import { Manrope, Noto_Serif_Display } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
+import { Concierge } from "@/components/concierge";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
-const playfair = Playfair_Display({
+/* Display: a classical high-contrast serif with true kerning, elegant at
+   headline sizes and sturdy enough for lead paragraphs. */
+const display = Noto_Serif_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
-const outfit = Outfit({
+/* Body: a precise, quietly confident grotesque. */
+const body = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -49,18 +52,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Prime Capital & Investment Limited" }],
   creator: "Prime Capital & Investment Limited",
   publisher: "Prime Capital & Investment Limited",
-  icons: {
-    icon: [
-      {
-        url: "/web-app-manifest-192x192.png",
-        media: "(prefers-color-scheme: light)",
-      },
-    ],
-  },
   openGraph: {
     title: "Prime Capital – Trusted Fund & Portfolio Management in Nigeria",
     description:
-      "Prime Capital & Investment Limited is a SEC-regulated fund and portfolio management firm in Nigeria. We build wealth and preserve trust.",
+      "Prime Capital & Investment Limited is a SEC-regulated fund and portfolio management firm in Nigeria. Building Wealth. Preserving Trust.",
     url: "https://primecapital.ng",
     siteName: "Prime Capital",
     type: "website",
@@ -129,7 +124,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${outfit.variable}`}
+      className={`${display.variable} ${body.variable}`}
       suppressHydrationWarning
     >
       <body className={`antialiased font-body`}>
@@ -142,8 +137,9 @@ export default function RootLayout({
         />
         <NextTopLoader showSpinner={false} />
         <SmoothScroll>{children}</SmoothScroll>
+        <Concierge />
+        <Analytics />
         <Toaster richColors position="top-right" />
-         <Analytics />
       </body>
     </html>
   );

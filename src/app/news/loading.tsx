@@ -1,39 +1,34 @@
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
-import { Card, CardContent } from "@/components/ui/card";
 
 export default function NewsLoading() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col bg-white">
       <Navigation />
 
-      <section className="pt-28 pb-12 md:pt-36 md:pb-16 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-background via-background to-primary/5">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="h-16 bg-muted animate-pulse rounded-lg mb-6 max-w-2xl mx-auto" />
-          <div className="h-8 bg-muted animate-pulse rounded-lg max-w-3xl mx-auto" />
+      {/* banner placeholder, same height as PageHero */}
+      <div className="h-[58vh] max-h-[640px] min-h-[420px] animate-pulse bg-ink" />
+
+      <section className="px-4 pt-24 pb-14 sm:px-6 md:pt-32 lg:px-8">
+        <div className="mx-auto max-w-3xl space-y-4">
+          <div className="mx-auto h-7 w-full animate-pulse bg-ink/[0.06]" />
+          <div className="mx-auto h-7 w-2/3 animate-pulse bg-ink/[0.06]" />
         </div>
       </section>
 
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="h-10 bg-muted animate-pulse rounded-lg" />
-        </div>
-      </section>
-
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="h-8 bg-muted animate-pulse rounded-lg mb-8 max-w-xs" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <Card key={i} className="overflow-hidden">
-                <div className="h-48 bg-muted animate-pulse" />
-                <CardContent className="pt-6 space-y-3">
-                  <div className="h-4 bg-muted animate-pulse rounded w-20" />
-                  <div className="h-6 bg-muted animate-pulse rounded" />
-                  <div className="h-4 bg-muted animate-pulse rounded" />
-                  <div className="h-4 bg-muted animate-pulse rounded w-3/4" />
-                </CardContent>
-              </Card>
+      <section className="bg-paper px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 h-10 w-64 animate-pulse bg-ink/[0.06]" />
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {["a", "b", "c", "d", "e", "f"].map((k) => (
+              <div key={k} className="bg-white">
+                <div className="aspect-[16/10] animate-pulse bg-ink/[0.06]" />
+                <div className="space-y-3 p-8">
+                  <div className="h-3 w-24 animate-pulse bg-ink/[0.06]" />
+                  <div className="h-6 w-full animate-pulse bg-ink/[0.06]" />
+                  <div className="h-6 w-2/3 animate-pulse bg-ink/[0.06]" />
+                </div>
+              </div>
             ))}
           </div>
         </div>
