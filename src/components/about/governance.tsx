@@ -18,7 +18,7 @@ const PILLARS = [
   {
     icon: Workflow,
     title: "Executive Management",
-    text: "A nine-member committee, led by the MD/CEO, is accountable for execution, operating controls and client service.",
+    text: "A management committee, led by the MD/CEO, is accountable for execution, operating controls and client service.",
   },
   {
     icon: ShieldCheck,

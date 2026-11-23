@@ -24,7 +24,7 @@ export const HISTORY: Milestone[] = [
   {
     when: "Leadership",
     title: "Kunle J. Adeboye leads as MD/CEO",
-    text: "Bringing 25+ years across asset management and pensions, supported by a nine-member management committee.",
+    text: "Bringing 25+ years across asset management and pensions, supported by an experienced management committee.",
   },
   {
     when: "Today",

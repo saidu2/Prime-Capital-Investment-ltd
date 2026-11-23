@@ -1,8 +1,9 @@
 /**
  * Leadership data.
  *
+ * 2026-11-23: Musa Sani and Ugochukwu Udorji removed (no longer with PCI).
  * Source of truth (2026-11-22): the owner's "Prime Capital Corporate Profile"
- * deck — five directors and a nine-member management committee, in the
+ * deck — five directors and the management committee, in the
  * deck's order and with its titles. Biographies are the deck's wording,
  * except: Kunle J. Adeboye (his own approved website profile) and Bashir /
  * Maryam (their longer approved website bios, consistent with the deck).
@@ -73,15 +74,6 @@ export const BOARD: Person[] = [
 export const MANAGEMENT: Person[] = [
   KUNLE,
   {
-    name: "Musa Sani",
-    role: "Head of Investments",
-    bio: "Portfolio management, investment research and risk management.",
-    // TODO(owner): no photo in the corporate profile deck — gold initials until supplied.
-    photo: "",
-    fullInfo:
-      "Portfolio management. 13+ years across pensions and investment management. Portfolio Manager, Nigerian University Pension Management Company, since November 2024, and previously Portfolio Manager/Investment Research Analyst there (2019–2023). Business Manager, Trustfund Pensions Plc (2013–2019). MSc Energy Economics and Law, University of Aberdeen, and Master of Islamic Banking and Finance, Bayero University Kano. Member, Institute of Chartered Economists of Nigeria.",
-  },
-  {
     name: "Buhari Suleiman Alfa",
     role: "Company Secretary & Compliance Officer",
     bio: "Legal advice, regulatory compliance and company secretarial services.",
@@ -127,13 +119,6 @@ export const MANAGEMENT: Person[] = [
     photo: "/hussaina.jpeg",
     fullInfo:
       "Administration and legal support. LLB, University of Ilorin, and BL (Second-Class Upper Division), Nigerian Law School. Legal internships at Gas Aggregation Company of Nigeria through the NYSC and at Omaplex Law Firm covered legal documentation, compliance and administration. Supports administration and regulatory compliance.",
-  },
-  {
-    name: "Ugochukwu Udorji",
-    role: "Head of Internal Audit",
-    bio: "Independent assurance reporting to the Audit & Risk Committee.",
-    photo: "/ugochukwu-udorji-studio.jpg",
-    fullInfo: "Independent assurance reporting to the Audit & Risk Committee.",
   },
   // Not on the management committee in the Corporate Profile deck; kept on
   // the team at the owner's request (2026-11-22).
