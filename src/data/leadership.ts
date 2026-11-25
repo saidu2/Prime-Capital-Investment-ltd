@@ -94,16 +94,19 @@ export const MANAGEMENT: Person[] = [
   {
     name: "Abubakar Abdulkadir Gusau",
     role: "Investment Analyst",
-    // TODO(owner): approved biography to follow.
-    bio: "Investment research, analysis and portfolio support.",
-    photo: "/abubakar-gusau-portrait.jpg",
-    fullInfo: "Investment research, analysis and portfolio support.",
+    bio: "Investment analyst with a First-Class Honours degree in Economics from the University of Buckingham.",
+    photo: "/abubakar-gusau-original.jpg",
+    // Owner-supplied facts (2026-11-25), expanded for tone — Abubakar to approve.
+    fullInfo: [
+      "Abubakar Abdulkadir Gusau is an Investment Analyst at Prime Capital & Investment Limited. He holds a First-Class Honours degree in Economics from the University of Buckingham, United Kingdom, with an academic grounding in macroeconomics, econometrics and data analysis.",
+      "He has a keen interest in investment research, asset management and portfolio analysis, particularly how economic developments shape investment opportunities. At Prime Capital, he supports the investment team through economic and market research, data-driven analysis and portfolio monitoring, contributing to disciplined, research-led investment decisions.",
+    ].join("\n\n"),
   },
   {
     name: "Zinatu Atiku",
     role: "Head of Operations & Human Resources",
     bio: "Fund administration, client service and people management and development.",
-    photo: "/zinatu-atiku-portrait.jpg",
+    photo: "/zinatu-atiku-original.jpg",
     fullInfo:
       "Fund administration, client service and people management and development.",
   },
