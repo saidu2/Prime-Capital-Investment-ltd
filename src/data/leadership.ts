@@ -111,7 +111,7 @@ export const MANAGEMENT: Person[] = [
     name: "Daniel Clement Adamu",
     role: "Head of Finance",
     bio: "Financial reporting, treasury, budgeting and controls.",
-    photo: "/daniel-adamu-portrait.jpg",
+    photo: "/daniel-adamu-original.jpg",
     fullInfo: "Financial reporting, treasury, budgeting and controls.",
   },
   {
