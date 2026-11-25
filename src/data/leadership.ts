@@ -2,6 +2,8 @@
  * Leadership data.
  *
  * 2026-11-23: Musa Sani and Ugochukwu Udorji removed (no longer with PCI).
+ * 2026-11-25: Abubakar Abdulkadir Gusau added (Investment Analyst); new
+ *   photos for Zinatu Atiku and Daniel Clement Adamu.
  * Source of truth (2026-11-22): the owner's "Prime Capital Corporate Profile"
  * deck — five directors and the management committee, in the
  * deck's order and with its titles. Biographies are the deck's wording,
@@ -90,10 +92,18 @@ export const MANAGEMENT: Person[] = [
       "Investment research and portfolio support. Experience in investment analysis and asset management operations at CardinalStone Asset Management Limited. First-Class Honours in Business Entrepreneurship, Effat University, Jeddah, and Master’s in Business Management, University of Essex. Supports investment decisions through research, portfolio analysis and business management.",
   },
   {
+    name: "Abubakar Abdulkadir Gusau",
+    role: "Investment Analyst",
+    // TODO(owner): approved biography to follow.
+    bio: "Investment research, analysis and portfolio support.",
+    photo: "/abubakar-gusau-portrait.jpg",
+    fullInfo: "Investment research, analysis and portfolio support.",
+  },
+  {
     name: "Zinatu Atiku",
     role: "Head of Operations & Human Resources",
     bio: "Fund administration, client service and people management and development.",
-    photo: "/zinatu-atiku-studio.jpg",
+    photo: "/zinatu-atiku-portrait.jpg",
     fullInfo:
       "Fund administration, client service and people management and development.",
   },
@@ -101,7 +111,7 @@ export const MANAGEMENT: Person[] = [
     name: "Daniel Clement Adamu",
     role: "Head of Finance",
     bio: "Financial reporting, treasury, budgeting and controls.",
-    photo: "/daniel-adamu-studio.jpg",
+    photo: "/daniel-adamu-portrait.jpg",
     fullInfo: "Financial reporting, treasury, budgeting and controls.",
   },
   {
